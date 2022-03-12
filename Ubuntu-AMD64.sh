@@ -51,14 +51,13 @@ unset LD_PRELOAD
 command="proot"
 command+=" --link2symlink"
 command+=" -0"
-command+=" -r $folder -q qemu-x86_64-static"
 command+=" -b /dev"
 command+=" -b /proc"
 command+=" -b ubuntu-fs64/root:/dev/shm"
 ## uncomment the following line to have access to the home directory of termux
-#command+=" -b /data/data/com.termux/files/home:/root"
+command+=" -b /data/data/com.termux/files/home:/root"
 ## uncomment the following line to mount /sdcard directly to / 
-#command+=" -b /sdcard"
+command+=" -b /sdcard"
 command+=" -w /root"
 command+=" /usr/bin/env -i"
 command+=" HOME=/root"
@@ -80,4 +79,5 @@ echo "making $bin executable"
 chmod +x $bin
 echo "removing image for some space"
 rm $tarball
-echo "You can now launch Debian with the ./${bin} script"
+mv $bin ~/../usr/bin/ubuntu
+echo "You can now launch Ubuntu with the ./${bin} script"
